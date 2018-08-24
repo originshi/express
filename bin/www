@@ -21,6 +21,18 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+global.io=require('socket.io')(server);
+
+io.on('connection',function(socket){
+      console.log('进来一个用户');
+      socket.on('disconnect',()=>{
+        console.log('走了一个用户')
+      })
+      socket.on('message',(msg)=>{
+          console.log('传回的值',msg);
+          io.emit('message','你好你好');
+      })
+})
 /**
  * Listen on provided port, on all network interfaces.
  */

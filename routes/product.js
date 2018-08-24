@@ -28,6 +28,8 @@ let { newDataBase,
 const database={
     dataBase: "mydb", collectionName: "products",
 }
+let sisuo=false;
+
 router.get('/',async function(req, res, next){
     var data=await selectData({
         ...database,
@@ -58,6 +60,12 @@ router.put('/',async function(req, res, next){
     }else{
         acount=acount-cartAcount;
         //console.log(acount)
+       
+        // while(sisuo){
+
+        // }
+        
+        // sisuo=true;
         var {msg,err,result}=await updateData({
             ...database,
             data:{
@@ -69,6 +77,8 @@ router.put('/',async function(req, res, next){
                 }
             }
         })
+        global.io.emit('update','雷雷雷');
+        // sisuo=false;
         if(msg=='更新成功'){
             res.send(result)
         }else{

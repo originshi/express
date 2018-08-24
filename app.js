@@ -25,6 +25,7 @@ var allowCrossDomain = function (req, res, next) {
   res.header('Content-Type', 'application/json')
   next();
 };
+
 app.use(allowCrossDomain);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
